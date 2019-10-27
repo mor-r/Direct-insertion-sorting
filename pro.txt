@@ -1,0 +1,25 @@
+import java.util.Arrays;
+public class Sort {
+    public static void insertSort(int[] array){
+        for(int i=1;i<array.length;i++){
+            //有序区间[0,i)
+            //无序区间[i,array.length)
+            int key=array[i];// 无序区间的第一个数
+            int j;
+            // 不写 array[j] == key 是为了保证稳定性
+            for(j=i-1;j>=0&&array[j]>key;j--){
+                array[j+1]=array[j];//不用交换，直接往后移一位即可
+            }
+            array[j+1]=key;
+        }
+    }
+    public static void main(String[] args) {
+        int[] a={4,5,8,7,1,3,5,7,1,2,9};
+        int[] b=a.clone();//a的一个克隆
+        insertSort(b);
+        System.out.println(Arrays.toString(b));
+        int[] c=a.clone();
+        Arrays.sort(c);//数组排序
+        System.out.println(Arrays.toString(c));
+        System.out.println(Arrays.equals(b,c));//进行两数组的比较
+    }
